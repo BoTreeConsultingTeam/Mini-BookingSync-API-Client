@@ -1,0 +1,40 @@
+<%= form_for [@rental, @booking], html:{ class: 'form-horizontal'} do |f| %>
+  <%= render 'shared/error_messages', object: @booking %>
+  <div class="form-group">
+      <label class="control-label col-sm-2">Email</label>
+      <div class="col-sm-10">
+        <%= f.email_field :client_email, class: 'form-control', placeholder:'e.g., customer@example.com', required: 'required' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2">Daily Rate</label>
+      <div class="col-sm-10">
+        <%= f.number_field :daily_rate , class: 'form-control', value: @rental.daily_rate, readonly: true %>
+      </div>
+    </div>
+    <%= f.hidden_field :rental_id, :value => @rental.id %>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2">Select Stay</label>
+      <div class="col-sm-4">
+        <%= f.text_field :start_at , class: 'form-control', placeholder:'Select Check In Date & Time', value: formatted_start_date %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.text_field :end_at , class: 'form-control', placeholder:'Select Check Out Date & Time', value: formatted_end_date %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2">Total Cost</label>
+      <div class="col-sm-10">
+        <%= f.text_field :price, value: @rental.daily_rate, class: 'form-control', readonly: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit "Submit", class: 'btn btn-default' %>
+      </div>
+    </div>
+<% end %>

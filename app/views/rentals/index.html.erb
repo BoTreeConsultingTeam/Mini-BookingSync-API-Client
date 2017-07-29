@@ -1,0 +1,22 @@
+<h2>Rentals LISTING</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Daily Rate</th>
+      <th colspan="2">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @rentals.present? %>
+      <% @rentals.each do |rental| %>
+        <tr>
+          <td><%= link_to rental.attributes[:name], rental_path(rental) %></td>
+          <td><%= rental.attributes[:daily_rate] %></td>
+          <td><%= link_to 'Edit', edit_rental_path(rental) %></td>
+          <td><%= link_to 'Delete', rental_path(rental), method: :delete %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

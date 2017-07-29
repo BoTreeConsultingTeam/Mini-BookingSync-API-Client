@@ -1,0 +1,37 @@
+<h2>Rental Details</h2>
+
+<strong>Name:</strong> <%= @rental.name %>
+<br>
+<strong>Daily Rate:</strong> <%= @rental.daily_rate %>
+<br>
+
+<h2>Booking Details</h2>
+
+<% if @bookings.present? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Client</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Total Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+     <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.client_email %></td>
+        <td><%= formatted_date(booking.start_at) %></td>
+        <td><%= formatted_date(booking.end_at) %></td>
+        <td><%= booking.price %></td>
+        <td><%= link_to 'Edit',  edit_rental_booking_path(@rental.id, booking.id) %></td>
+        <td><%= link_to 'Delete', rental_booking_path(@rental.id, booking.id), method: :delete %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+
+<%= link_to 'Book Now', new_rental_booking_path(@rental) %>
