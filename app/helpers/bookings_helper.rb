@@ -22,6 +22,6 @@ module BookingsHelper
   end
 
   def format_datetime(utc_date_string)
-    utc_date_string.to_datetime.strftime('%m/%d/%Y %I:%M')
+    utc_date_string.to_datetime.strftime('%m/%d/%Y')
   end
 end

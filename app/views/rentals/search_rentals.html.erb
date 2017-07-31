@@ -1,0 +1,28 @@
+<h2>Check Availability</h2><br>
+
+<%= form_tag url_for(:controller => 'rentals', :action => 'search_rentals'), :method => 'get' do %>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-group ">
+        <label class="control-label col-sm-5">Check In Date</label>
+        <div class="col-sm-7">
+          <%= text_field_tag :start_at , params[:start_at],class: 'form-control', placeholder:'mm/dd/yyyy',:id => 'booking_start_at',required: 'required'%>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group ">
+        <label class="control-label col-sm-5">Check Out Date</label>
+        <div class="col-sm-7">
+          <%= text_field_tag :end_at , params[:end_at],class: 'form-control', placeholder:'mm/dd/yyyy',:id => 'booking_end_at',required: 'required'%>
+        </div>
+      </div>
+    </div>
+    <div class="text-left col-sm-4">
+      <%= submit_tag "Search", class: "btn btn-large btn-primary" %>
+    </div>
+  </div>
+<% end %>
+
+
+<%= render partial: 'rental_listings' if @rentals.present? %>

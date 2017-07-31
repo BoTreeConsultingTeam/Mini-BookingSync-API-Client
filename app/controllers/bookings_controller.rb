@@ -31,7 +31,7 @@ class BookingsController < ApplicationController
   end
 
   def destroy
-    response = @booking.destroy
+    response = booking.destroy
     redirect_to rental_path(params[:rental_id])
   end
 
@@ -50,8 +50,8 @@ class BookingsController < ApplicationController
   end
 
   def dates
-    start_date =  DateTime.strptime(booking_params[:start_at], '%m/%d/%g %H %M')
-    end_date =  DateTime.strptime(booking_params[:end_at], '%m/%d/%g %H %M')
+    start_date =  DateTime.strptime(booking_params[:start_at], '%m/%d/%g')
+    end_date =  DateTime.strptime(booking_params[:end_at], '%m/%d/%g')
     {:start_at => start_date,:end_at => end_date}
   end
 end

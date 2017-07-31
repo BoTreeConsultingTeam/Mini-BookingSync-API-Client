@@ -1,0 +1,55 @@
+
+<div class="">
+  <%= form_tag url_for(:controller => 'bookings', :action => 'search_bookings'), :method => 'get' do %>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group ">
+          <label class="control-label col-sm-5">Check In Date</label>
+          <div class="col-sm-7">
+            <%= text_field_tag :start_at , params[:start_at],class: 'form-control', placeholder:'Select Check In Date',:id => 'booking_start_at'%>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group ">
+          <label class="control-label col-sm-5">Check Out Date</label>
+          <div class="col-sm-7">
+            <%= text_field_tag :end_at , params[:end_at],class: 'form-control', placeholder:'Select Check Out Date',:id => 'booking_end_at'%>
+          </div>
+        </div>
+      </div>
+      <div class="text-left col-sm-4">
+        <%= submit_tag "Search", class: "btn btn-large btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<h2>Booking Details</h2>
+
+<% if @bookings.present? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Client</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Total Price</th>
+      </tr>
+    </thead>
+    <tbody>
+     <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.client_email %></td>
+        <td><%= formatted_date(booking.start_at) %></td>
+        <td><%= formatted_date(booking.end_at) %></td>
+        <td><%= booking.price %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <% if params[:rental].present? %>
+    <h5>No Bookings Found !</h5>
+  <% end %>
+<% end %>

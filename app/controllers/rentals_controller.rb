@@ -38,6 +38,10 @@ class RentalsController < ApplicationController
     redirect_to rentals_path
   end
 
+  def search_rentals
+    @rentals = Rental.all(params: params) if params[:start_at].present?
+  end
+
   private
 
   def rental_params

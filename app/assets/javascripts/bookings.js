@@ -1,12 +1,12 @@
 $( document ).on('turbolinks:load', function() {
   $('#booking_start_at').datetimepicker({
     sideBySide: true,
-    format: 'MM/DD/YYYY hh:mm A'
+    format: 'MM/DD/YYYY'
   });
   $('#booking_end_at').datetimepicker({
     sideBySide: true,
     useCurrent: false,
-    format: 'MM/DD/YYYY hh:mm A'
+    format: 'MM/DD/YYYY'
   });
   $("#booking_start_at").on("dp.change", function (e) {
     $('#booking_end_at').data("DateTimePicker").minDate(e.date);
