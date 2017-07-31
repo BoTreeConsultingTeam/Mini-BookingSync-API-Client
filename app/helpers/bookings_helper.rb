@@ -12,12 +12,12 @@ module BookingsHelper
   end
 
   def formatted_start_date
-    return '' if @booking.start_at.blank?
+    return params[:start_date] if @booking.start_at.blank?
     format_datetime(@booking.start_at)
   end
 
   def formatted_end_date
-    return '' if @booking.end_at.blank?
+    return params[:end_date] if @booking.end_at.blank?
     format_datetime(@booking.end_at)
   end
 

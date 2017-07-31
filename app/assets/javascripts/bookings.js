@@ -1,12 +1,14 @@
 $( document ).on('turbolinks:load', function() {
   $('#booking_start_at').datetimepicker({
     sideBySide: true,
-    format: 'MM/DD/YYYY'
+    format: 'MM/DD/YYYY',
+    minDate: moment().millisecond(0).second(0).minute(0).hour(0)
   });
   $('#booking_end_at').datetimepicker({
     sideBySide: true,
     useCurrent: false,
-    format: 'MM/DD/YYYY'
+    format: 'MM/DD/YYYY',
+    minDate: moment().millisecond(0).second(0).minute(0).hour(0)
   });
   $("#booking_start_at").on("dp.change", function (e) {
     $('#booking_end_at').data("DateTimePicker").minDate(e.date);
@@ -19,6 +21,7 @@ $( document ).on('turbolinks:load', function() {
   $("#booking_daily_rate").on("change",function(){
     calculate_total_cost();
   });
+  calculate_total_cost();
 });
 
 function calculate_total_cost(){

@@ -13,13 +13,15 @@
         <tr>
           <td><%= link_to rental.attributes[:name], rental_path(rental) %></td>
           <td><%= rental.attributes[:daily_rate] %></td>
-          <td><%= link_to 'Book Now', new_rental_booking_path(rental) %></td>
+          <td><%= link_to 'Book Now', new_rental_booking_path(rental_id: rental,start_date: params[:start_at], end_date: params[:end_at]) %></td>
           <% if params[:action] == 'index' %>
             <td><%= link_to 'Edit', edit_rental_path(rental) %></td>
             <td><%= link_to 'Delete', rental_path(rental), method: :delete %></td>
           <% end %>
         </tr>
       <% end %>
+    <% elsif params[:rental].present? %>
+      <tr><td><h4 class="text-center">No Rental Found.</h4></td></tr>
     <% end %>
   </tbody>
 </table>
